@@ -1,0 +1,17 @@
+#!/bin/bash
+
+NewDir=$1
+ArchiveName=$2.tar
+mkdir -p $NewDir
+shift 2
+
+for ext in $@; do
+	files=$(find -name "*.$ext")
+	for file in $files; do
+ 		cp $file $NewDir 	
+	done
+done
+
+tar -cf $ArchiveName $NewDir
+
+echo "Done"
